@@ -1,13 +1,33 @@
+
+// requiring needed modules
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const expressEdge =require('express-edge');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-app.get('/' , (req , res)=> {
-    res.send(path.resolve(__dirname , 'pages/index.html'))
 
-})
+app.use(expressEdge.engine);
+app.set("views", __dirname + "/views");
+
+app.get('/' , (req,res)=> {
+    res.render('index')
+
+});
+
+
+app.get('/about', (req,res)=>{
+    res.render('about')
+});
+
+app.get('/post', (req,res)=>{
+    res.render('post')
+});
+
+app.get('/contact', (req,res)=>{
+    res.render('contact')
+});
 
 
 
