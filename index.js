@@ -5,6 +5,12 @@ const app = express();
 const path = require('path');
 const expressEdge =require('express-edge').engine;
 
+
+// connecting to the DB
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/Node-Js-Blog');
+
+
 app.use(express.static('public'));
 
 
