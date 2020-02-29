@@ -3,12 +3,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const expressEdge =require('express-edge');
+const expressEdge =require('express-edge').engine;
 
 app.use(express.static('public'));
 
 
-app.use(expressEdge.engine);
+app.use(expressEdge);
 app.set("views", __dirname + "/views");
 
 app.get('/' , (req,res)=> {
