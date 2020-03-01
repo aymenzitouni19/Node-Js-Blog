@@ -1,0 +1,54 @@
+@layout('layouts.app')
+
+@section('content)
+<header class="masthead" style="background-image: url('img/about-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>New POST  </h1>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form action="">
+
+
+        <div class="cotrol-group">
+          <div class="form-group-floating-label-form-group controls">
+            <label for="">Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Title">
+          </div>
+        </div>
+
+        <div class="cotrol-group">
+          <div class="form-group-floating-label-form-group controls">
+            <label for="">Description</label>
+            <input type="text" name="description" class="form-control" placeholder="Description">
+          </div>
+        </div>
+
+        <div class="cotrol-group">
+          <div class="form-group-floating-label-form-group controls">
+            <textarea name="content" class="form-control" id="" cols="30" rows="10" placeholder="Content"></textarea>
+          </div>
+        </div>
+
+        
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+@endsection

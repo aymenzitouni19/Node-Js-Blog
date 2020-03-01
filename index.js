@@ -39,6 +39,10 @@ app.get('/contact', (req,res)=>{
     res.render('contact')
 });
 
+app.get('/post/new', (req,res)=>{
+    res.render('create')
+});
+
 
 
 
