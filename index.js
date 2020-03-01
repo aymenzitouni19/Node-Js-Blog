@@ -10,6 +10,10 @@ const expressEdge =require('express-edge').engine;
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/Node-Js-Blog');
 
+// importing models
+const Post = require('./models/Post');
+
+
 
 app.use(express.static('public'));
 
@@ -40,4 +44,4 @@ app.get('/contact', (req,res)=>{
 
 
 
-app.listen(8080, ()=> console.log('Server listening on port 8080'))
+app.listen(3000, ()=> console.log('Server listening on port 3000'))

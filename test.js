@@ -1,12 +1,7 @@
-const Post = require('./models/Post');
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true , useUnifiedTopology: true});
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test');
 
-Post.create({
-    title : 'firstPost',
-    description : 'desjfjfjfj ',
-    content : 'ijfuuhuguhgrurg',
-}, (error , Post)=>{console.log(error,Post)})
+const Cat = mongoose.model('Cat', { name: String });
 
-
-
+const kitty = new Cat({ name: 'Zildjian' });
+kitty.save().then(() => console.log('meow'));
