@@ -4,6 +4,11 @@ const PostSchema = new mongoose.Schema({
     title : String,
     subtitle : String,
     username : String,
+    createAt : {
+        type : Date ,
+        default : new Date(),
+    },
+    image : String,
     
     content : String,
 })
