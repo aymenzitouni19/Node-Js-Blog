@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const expressEdge =require('express-edge').engine;
+const bodyParser = require('body-parser')
 
 
 // connecting to the DB
@@ -16,13 +17,16 @@ const Post = require('./models/Post');
 
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:true}))
 
 
 app.use(expressEdge);
 app.set("views", __dirname + "/views");
 
-app.get('/' , (req,res)=> {
-    res.render('index')
+app.get('/' , async (req,res)=> {
+    const posts =await Post.find({})
+    console.log(posts);
+    res.render('index',{posts})
 
 });
 
@@ -35,17 +39,28 @@ app.get('/post', (req,res)=>{
     res.render('post')
 });
 
+app.get('/post/new', (req,res)=>{
+    res.render('newPost')
+});
+
+app.post('/post/store', (req,res)=>{
+    Post.create(req.body ,(error,post)=>{
+        res.redirect('/')
+    })
+ });
+
 app.get('/contact', (req,res)=>{
     res.render('contact')
 });
 
-app.get('/post/new', (req,res)=>{
-    res.render('create')
-});
 
 
 
 
 
 
-app.listen(3000, ()=> console.log('Server listening on port 3000'))
+
+
+
+
+app.listen(4000 , ()=> console.log('Server listening on port 4000'))

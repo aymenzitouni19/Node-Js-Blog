@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "node-Js-Blog is a blog builded using NodeJs , Express.js , mongoDb , Bootstrap",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aymenzitouni19/Node-Js-Blog.git"
@@ -16,6 +18,7 @@
   },
   "homepage": "https://github.com/aymenzitouni19/Node-Js-Blog#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-edge": "^2.0.1",
     "mongoose": "^5.0.1"
