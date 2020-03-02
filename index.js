@@ -4,7 +4,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const expressEdge =require('express-edge').engine;
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload')
+
 
 
 // connecting to the DB
@@ -17,7 +19,9 @@ const Post = require('./models/Post');
 
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload());
+
 
 
 app.use(expressEdge);
@@ -25,7 +29,7 @@ app.set("views", __dirname + "/views");
 
 app.get('/' , async (req,res)=> {
     const posts =await Post.find({})
-    console.log(posts);
+    // console.log(posts);
     res.render('index',{posts})
 
 });
@@ -44,10 +48,20 @@ app.get('/post/new', (req,res)=>{
 });
 
 app.post('/post/store', (req,res)=>{
-    Post.create(req.body ,(error,post)=>{
-        res.redirect('/')
+    const {image} = req.files;
+    image.mv(path.resolve(__dirname , 'public/posts' , image.name ), (error)=>{
+        Post.create(req.body ,(error,post)=>{
+            res.redirect('/')
+        })
     })
+   
+    console.log(req.files)
  });
+
+ app.get('/post/:id', async (req,res)=>{
+     const post = await Post.findById(req.params.id);
+    res.render('post', {post})
+});
 
 app.get('/contact', (req,res)=>{
     res.render('contact')
@@ -63,4 +77,4 @@ app.get('/contact', (req,res)=>{
 
 
 
-app.listen(4000 , ()=> console.log('Server listening on port 4000'))
+app.listen(7000 , ()=> console.log('Server listening on port 4000'))
