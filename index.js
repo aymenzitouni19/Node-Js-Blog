@@ -22,6 +22,8 @@ const storePostController = require('./controllers/storePost')
 const getPostController  = require('./controllers/getPost')
 const getAboutController = require('./controllers/getAbout')
 const getContactController = require('./controllers/getContact')
+const createUserController = require('./controllers/createUser')
+const storeUserController = require('./controllers/storeUser')
 
 
 const storePost = require('./middleware/storePost')
@@ -38,6 +40,8 @@ app.use('/post/store',storePost)
 //routers
 
 app.get('/' ,homePageController);
+app.get('/auth/register' , createUserController)
+app.post('/users/register' , )
 app.get('/about', getAboutController);
 app.get('/post', (req,res)=>{
     res.render('post')
@@ -46,6 +50,7 @@ app.get('/post/new', createPostController);
 app.post('/post/store', storePostController)
 app.get('/post/:id', getPostController );
 app.get('/contact', getContactController);
+
 
 
 
