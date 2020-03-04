@@ -24,12 +24,7 @@ const getAboutController = require('./controllers/getAbout')
 const getContactController = require('./controllers/getContact')
 
 
-const validateCreatePostMiddleware = (req , res , next)=>{
-    if (!req.files.image || !req.body.username || !req.body.title || !req.body.subtitle ){
-        return res.redirect('/post/new')
-    }
-    next()
-}
+const storePost = require('./middleware/storePost')
 
 
 // settingUp middlewares
@@ -38,7 +33,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
 app.use(expressEdge);
 app.set("views", __dirname + "/views");
-app.use('/post/store',validateCreatePostMiddleware)
+app.use('/post/store',storePost)
 
 //routers
 
