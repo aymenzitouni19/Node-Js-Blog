@@ -41,7 +41,7 @@ app.use('/post/store',storePost)
 
 app.get('/' ,homePageController);
 app.get('/auth/register' , createUserController)
-app.post('/users/register' , )
+app.post('/users/register' , storeUserController )
 app.get('/about', getAboutController);
 app.get('/post', (req,res)=>{
     res.render('post')
