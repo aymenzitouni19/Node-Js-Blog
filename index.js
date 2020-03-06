@@ -24,6 +24,8 @@ const getAboutController = require('./controllers/getAbout')
 const getContactController = require('./controllers/getContact')
 const createUserController = require('./controllers/createUser')
 const storeUserController = require('./controllers/storeUser')
+const loginController = require('./controllers/login')
+const loginUserController = require('./controllers/loginUser')
 
 
 const storePost = require('./middleware/storePost')
@@ -41,7 +43,9 @@ app.use('/post/store',storePost)
 
 app.get('/' ,homePageController);
 app.get('/auth/register' , createUserController)
+app.get('/auth/login' , loginController)
 app.post('/users/register' , storeUserController )
+app.post('/users/login' , loginUserController )
 app.get('/about', getAboutController);
 app.get('/post', (req,res)=>{
     res.render('post')
@@ -61,5 +65,5 @@ app.get('/contact', getContactController);
 
 
 
-
-app.listen(3000 , ()=> console.log('Server listening on port 3000'))
+const port = process.env.port || 3000
+app.listen(port , ()=> console.log('Server listening on port '+port))
