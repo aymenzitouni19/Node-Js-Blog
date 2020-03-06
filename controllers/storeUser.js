@@ -7,15 +7,14 @@ module.exports = (req,res)=>{
     const password = req.body.password;
     
 
-    let newUser = {
+    let userJdid = {
         username,
         email,
         password
     }
-
-    bcrypt.hash(newUser.password , 10 , (err , hashed)=>{
-        newUser.password = hashed;
-        User.create(newUser,(error , user)=>{
+    bcrypt.hash(userJdid.password , 10 , (err , hashed)=>{
+        userJdid.password = hashed;
+        User.create(userJdid,(error , user)=>{
             if (error){
                 return res.redirect('/auth/register')
             }
@@ -23,5 +22,7 @@ module.exports = (req,res)=>{
             res.redirect('/')
         })
     })
+
+    
     
 }
