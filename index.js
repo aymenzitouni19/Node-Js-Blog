@@ -5,6 +5,7 @@ const app = express();
 const expressEdge =require('express-edge').engine;
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const expresSession = require('express-session')
 
 
 
@@ -29,6 +30,7 @@ const loginUserController = require('./controllers/loginUser')
 
 
 const storePost = require('./middleware/storePost')
+const isAuthenticated = require('./middleware/isAutheticated')
 
 
 // settingUp middlewares
@@ -38,6 +40,10 @@ app.use(fileUpload());
 app.use(expressEdge);
 app.set("views", __dirname + "/views");
 app.use('/post/store',storePost)
+app.use(expresSession({
+    secret : 'secret'
+}))
+app.use(isAuthenticated)
 
 //routers
 
