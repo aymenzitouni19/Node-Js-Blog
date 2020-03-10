@@ -10,8 +10,8 @@ const expresSession = require('express-session')
 
 
 // connecting to the DB
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Node-Js-Blog');
+require('./config/database');
+// mongoose.connect('mongodb://localhost/Node-Js-Blog');
 
 
 
@@ -39,11 +39,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
 app.use(expressEdge);
 app.set("views", __dirname + "/views");
+//app.use();
 app.use('/post/store',storePost)
 app.use(expresSession({
     secret : 'secret'
 }))
-app.use(isAuthenticated)
+
 
 //routers
 

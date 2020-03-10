@@ -1,4 +1,8 @@
 module.exports = (req,res)=>{
-    res.render('login')
+    if (req.session.id){
+        res.redirect('/')
+    }else{
+        res.render('login')
+    }
     
 }
