@@ -69,7 +69,7 @@ app.get('/post/new', createPostController);
 app.post('/post/store', storePostController)
 app.get('/post/:id', getPostController );
 app.get('/contact', getContactController);
-app.get('/auth/logout' , logOutController);
+app.get('/auth/logout' ,isAuthenticated, logOutController);
 
 
 
