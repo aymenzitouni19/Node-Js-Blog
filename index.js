@@ -5,7 +5,9 @@ const app = express();
 const expressEdge =require('express-edge').engine;
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-const expresSession = require('express-session')
+const expresSession = require('express-session');
+const connectFlash = require('connect-flash')
+const edge = require('edge.js')
 
 
 
@@ -27,6 +29,7 @@ const createUserController = require('./controllers/createUser')
 const storeUserController = require('./controllers/storeUser')
 const loginController = require('./controllers/login')
 const loginUserController = require('./controllers/loginUser')
+const logOutController = require('./controllers/logOut.js')
 
 
 const storePost = require('./middleware/storePost')
@@ -44,6 +47,11 @@ app.use('/post/store',storePost)
 app.use(expresSession({
     secret : 'secret'
 }))
+app.use(connectFlash())
+app.use('*',(req , res , next)=>{
+    edge.global('auth' , req.session.id);
+    next()
+} )
 
 
 //routers
@@ -61,6 +69,7 @@ app.get('/post/new', createPostController);
 app.post('/post/store', storePostController)
 app.get('/post/:id', getPostController );
 app.get('/contact', getContactController);
+app.get('/auth/logout' , logOutController);
 
 
 
