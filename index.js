@@ -50,7 +50,7 @@ app.use(expresSession({
 
 app.get('/' ,homePageController);
 app.get('/auth/register' , createUserController)
-app.get('/auth/login' , loginController)
+app.get('/auth/login' ,isAuthenticated, loginController)
 app.post('/users/register' , storeUserController )
 app.post('/users/login' , loginUserController )
 app.get('/about', getAboutController);

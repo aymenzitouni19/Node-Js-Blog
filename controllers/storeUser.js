@@ -16,6 +16,8 @@ module.exports = (req,res)=>{
         userJdid.password = hashed;
         User.create(userJdid,(error , user)=>{
             if (error){
+                const registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message)
+                req.session.registrationErrors = registrationErrors
                 return res.redirect('/auth/register')
             }
             console.log('user created');
